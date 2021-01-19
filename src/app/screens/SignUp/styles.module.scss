@@ -12,10 +12,10 @@
     background-color: $cerulean;
   }
 
-  .wolox-logo-wrapper {
+  .logo-container {
     margin: 20px 42.5px 0 45px;
 
-    .wolox-logo {
+    .logo {
       width: 100%;
     }
   }
@@ -26,17 +26,6 @@
     font-size: 16px;
     line-height: 24px;
     margin: 8px 0 0 25px;
-  }
-
-  .error-labels {
-    color: $red;
-    margin-left: 25px;
-  }
-
-  .custom-inputs {
-    border-radius: 5px;
-    height: 32px;
-    margin: 8px 23px 0 25px;
   }
 
   .custom-button {
