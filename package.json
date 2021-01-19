@@ -24,7 +24,6 @@
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "@rescripts/cli": "0.0.13",
     "@types/enzyme": "^3.10.8",
-    "@types/jest": "^24.9.1",
     "@types/node": "^12.19.13",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
@@ -60,8 +59,8 @@
     "prop-types": "^15.7.2",
     "react-hot-loader": "^4.13.0",
     "react-test-renderer": "^16.14.0",
-    "stylelint": "^9.10.1",
-    "stylelint-config-wolox": "^1.0.7",
+    "stylelint": "^13.8.0",
+    "stylelint-config-wolox": "^1.1.0",
     "stylelint-no-indistinguishable-colors": "^1.2.1",
     "stylelint-scss": "^3.5.4"
   },
@@ -106,7 +105,7 @@
     "lint-fix": "./node_modules/eslint/bin/eslint.js src --fix && ./node_modules/stylelint/bin/stylelint.js '**/*.scss' --fix",
     "lint-scss": "./node_modules/stylelint/bin/stylelint.js '**/*.scss'",
     "lint-diff": "git diff --name-only --cached --relative --diff-filter=ACM | grep \\.js$ | xargs eslint",
-    "coverage-diff": "rescripts test --env=jsdom --coverage --watchAll=false --changedSince=development"
+    "coverage-diff": "rescripts test --env=jsdom --coverage --watchAll=false --changedSince=main"
   },
   "husky": {
     "hooks": {
