@@ -6,24 +6,22 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
   inputRef?: Ref<HTMLInputElement>;
   error?: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'date';
-  inputStyle: string;
-  labelText?: string;
-  labelStyle?: string;
+  label?: string;
+  labelClassName?: string;
 }
 
 export default function CustomInput({
   inputRef,
   error,
   type = 'text',
-  inputStyle,
-  labelText,
-  labelStyle,
+  label,
+  labelClassName,
   ...props
 }: Props) {
   return (
-    <div className={`${styles.wrapper} column`}>
-      {labelText && <label className={labelStyle}>{labelText}</label>}
-      <input {...props} ref={inputRef} type={type} className={inputStyle} />
+    <div className={`${styles.inputContainer} column`}>
+      {label && <label className={labelClassName}>{label}</label>}
+      <input {...props} ref={inputRef} type={type} className={styles.customInput} />
       {error && <span className={styles.errorLabels}>{error}</span>}
     </div>
   );
