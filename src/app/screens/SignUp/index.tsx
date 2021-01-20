@@ -2,12 +2,13 @@ import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
+import CustomInput from '../../components/CustomInput';
+
 import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';
 import WoloxImg from './assets/wolox-logo.png';
-import CustomInput from './components/CustomInput';
 
-interface UserProps {
+interface FormData {
   firstName: string;
   lastName: string;
   email: string;
@@ -17,7 +18,7 @@ interface UserProps {
 }
 
 export default function SignUp() {
-  const { register, handleSubmit, watch, errors } = useForm<UserProps>({ mode: 'all' });
+  const { register, handleSubmit, watch, errors } = useForm<FormData>({ mode: 'all' });
   const onSubmit = handleSubmit(data => {
     data.locale = i18next.language;
     // eslint-disable-next-line no-console
@@ -27,29 +28,30 @@ export default function SignUp() {
   return (
     <div className="row center">
       <form onSubmit={onSubmit} className={`column ${styles.signupForm}`}>
-        <div className={styles.header} />
-        <div className={styles.logoContainer}>
-          <img src={WoloxImg} alt={i18next.t('SignUp:logoAlt') as string} className={styles.logo} />
-        </div>
-        <label className={styles.customLabels}>{i18next.t('SignUp:firstName')}</label>
+        <img src={WoloxImg} alt={i18next.t('SignUp:logoAlt') as string} className={styles.logo} />
         <CustomInput
           name={SIGN_UP_FIELDS.firstName}
+          inputStyle={styles.customInput}
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:required') }
           })}
-          error={errors?.firstName?.message}
+          error={errors.firstName?.message}
+          labelText={i18next.t('SignUp:firstName') as string}
+          labelStyle={styles.customLabel}
         />
-        <label className={styles.customLabels}>{i18next.t('SignUp:lastName')}</label>
         <CustomInput
           name={SIGN_UP_FIELDS.lastName}
+          inputStyle={styles.customInput}
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:required') }
           })}
-          error={errors?.lastName?.message}
+          error={errors.lastName?.message}
+          labelText={i18next.t('SignUp:lastName') as string}
+          labelStyle={styles.customLabel}
         />
-        <label className={styles.customLabels}>{i18next.t('SignUp:email')}</label>
         <CustomInput
           name={SIGN_UP_FIELDS.email}
+          inputStyle={styles.customInput}
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:required') },
             pattern: {
@@ -57,32 +59,39 @@ export default function SignUp() {
               message: i18next.t('SignUp:invalidEmail')
             }
           })}
-          error={errors?.email?.message}
+          error={errors.email?.message}
           type="email"
+          labelText={i18next.t('SignUp:email') as string}
+          labelStyle={styles.customLabel}
         />
-        <label className={styles.customLabels}>{i18next.t('SignUp:password')}</label>
         <CustomInput
           name={SIGN_UP_FIELDS.password}
+          inputStyle={styles.customInput}
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:required') }
           })}
-          error={errors?.password?.message}
+          error={errors.password?.message}
           type="password"
+          labelText={i18next.t('SignUp:password') as string}
+          labelStyle={styles.customLabel}
         />
-        <label className={styles.customLabels}>{i18next.t('SignUp:confirmPassword')}</label>
         <CustomInput
           name={SIGN_UP_FIELDS.passwordConfirmation}
+          inputStyle={styles.customInput}
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:required') },
             validate: value => value === watch('password') || (i18next.t('SignUp:passwordsNoMatch') as string)
           })}
-          error={errors?.passwordConfirmation?.message}
+          error={errors.passwordConfirmation?.message}
           type="password"
+          labelText={i18next.t('SignUp:passwordsNoMatch') as string}
+          labelStyle={styles.customLabel}
         />
-        <button className={`${styles.customButton} ${styles.signupButton}`} type="submit">
-          {i18next.t('SignUp:signUp')}
-        </button>
-        <hr className={styles.separator} />
+        <div className={`column ${styles.signupButtonContainer}`}>
+          <button className={`${styles.customButton} ${styles.signupButton}`} type="submit">
+            {i18next.t('SignUp:signUp')}
+          </button>
+        </div>
         <button className={`${styles.customButton} ${styles.loginButton}`} type="button">
           {i18next.t('SignUp:login')}
         </button>

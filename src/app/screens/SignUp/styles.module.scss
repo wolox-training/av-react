@@ -1,31 +1,32 @@
-@import '../../../scss/variables/colors';
+@import 'variables/colors';
 
 .signup-form {
   background-color: $wild-sand;
-  height: 634px;
+  border-top: 8px solid $cerulean;
+  min-height: 634px;
   margin-top: 51px;
   text-align: left;
   width: 300px;
 
-  .header {
-    height: 8px;
-    background-color: $cerulean;
+  .logo {
+    height: 70px;
+    margin: 28px 42.5px 0 45px;
+    width: 212px;
   }
 
-  .logo-container {
-    margin: 20px 42.5px 0 45px;
-
-    .logo {
-      width: 100%;
-    }
-  }
-
-  .custom-labels {
+  .custom-label {
     align-self: flex-start;
     color: $black;
     font-size: 16px;
     line-height: 24px;
-    margin: 8px 0 0 25px;
+  }
+
+  .custom-input {
+    border-radius: 5px;
+    height: 32px;
+    margin-top: 8px;
+    padding-left: 5px;
+    width: 100%;
   }
 
   .custom-button {
@@ -34,17 +35,22 @@
     height: 32px;
   }
 
+  .signup-button-container {
+    margin: 24px 24px 0;
+
+    &::after {
+      content: '';
+      background-color: $silver-chalice;
+      display: block;
+      height: 2px;
+      margin-top: 16px;
+    }
+  }
+
   .signup-button {
     background-color: $earls-green;
     color: $white;
-    margin: 24px 24px 0;
-  }
-
-  .separator {
-    background-color: $silver-chalice;
-    border: 1px solid $silver-chalice;
-    height: 2px;
-    margin: 16px 24px 0;
+    width: 100%;
   }
 
   .login-button {
