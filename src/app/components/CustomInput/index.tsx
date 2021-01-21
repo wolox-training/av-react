@@ -21,7 +21,7 @@ export default function CustomInput({
   return (
     <div className={`${styles.inputContainer} column`}>
       {label && <label className={labelClassName}>{label}</label>}
-      <input {...props} ref={inputRef} type={type} className={styles.customInput} />
+      <input {...props} ref={inputRef} type={type} className={`${styles.input} full-width`} />
       {error && <span className={styles.errorLabels}>{error}</span>}
     </div>
   );

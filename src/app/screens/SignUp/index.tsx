@@ -83,7 +83,7 @@ export default function SignUp() {
           labelClassName={styles.customLabel}
         />
         <div className={`column ${styles.signupButtonContainer}`}>
-          <button className={`${styles.customButton} ${styles.signupButton}`} type="submit">
+          <button className={`${styles.customButton} ${styles.signupButton} full-width`} type="submit">
             {i18next.t('SignUp:signUp')}
           </button>
         </div>
