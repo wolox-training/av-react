@@ -2,10 +2,10 @@ import React from 'react';
 
 import '../scss/application.scss';
 
-import Home from './screens/Home';
+import SignUp from './screens/SignUp';
 
 function App() {
-  return <Home />;
+  return <SignUp />;
 }
 
 export default App;
