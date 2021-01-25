@@ -50,4 +50,16 @@
     color: $earls-green;
     margin: 16px 24px 24px;
   }
+
+  .disabled {
+    background-color: #CCC;
+    border: 1px solid #999;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .loading {
+    margin-top: 16px;
+  }
 }

@@ -2,31 +2,40 @@ import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
+import { User } from 'typings/user';
+
+import { signUp } from '../../../services/UserService';
 import CustomInput from '../../components/CustomInput';
+import { useLazyRequest } from '../../hooks/useRequest';
+import CustomErrorDisplayer from '../../components/CustomErrorDisplayer';
+import Loading from '../../components/Spinner/components/loading';
 
 import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';
 import WoloxImg from './assets/wolox-logo.png';
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
+interface FormData extends User {
   passwordConfirmation?: string;
-  locale?: string;
 }
 
 export default function SignUp() {
   const { register, handleSubmit, watch, errors } = useForm<FormData>({ mode: 'all' });
+  const [state, loading, error, sendRequest] = useLazyRequest({
+    request: signUp
+  });
+
+  if (state) {
+    // eslint-disable-next-line no-console
+    console.log(state);
+  }
+
   const onSubmit = handleSubmit(data => {
     data.locale = i18next.language;
-    // eslint-disable-next-line no-console
-    console.log(data);
+    sendRequest(data);
   });
 
   return (
-    <div className="row center">
+    <div className="column center">
       <form onSubmit={onSubmit} className={`column ${styles.signupForm}`}>
         <img src={WoloxImg} alt={i18next.t('SignUp:logoAlt') as string} className={styles.logo} />
         <CustomInput
@@ -83,14 +92,26 @@ export default function SignUp() {
           labelClassName={styles.customLabel}
         />
         <div className={`column ${styles.signupButtonContainer}`}>
-          <button className={`${styles.customButton} ${styles.signupButton} full-width`} type="submit">
+          <button
+            className={`full-width ${styles.customButton} ${styles.signupButton} 
+            ${loading ? styles.disabled : ''}
+            `}
+            type="submit"
+          >
             {i18next.t('SignUp:signUp')}
           </button>
         </div>
-        <button className={`${styles.customButton} ${styles.loginButton}`} type="button">
+        <button
+          className={`${styles.customButton} ${styles.loginButton} ${loading ? styles.disabled : ''}`}
+          type="button"
+        >
           {i18next.t('SignUp:login')}
         </button>
       </form>
+      {loading && <Loading className={styles.loading} />}
+      {error?.errorData?.errors.fullMessages.length && (
+        <CustomErrorDisplayer errors={error.errorData?.errors.fullMessages} />
+      )}
     </div>
   );
 }
