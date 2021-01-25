@@ -39,13 +39,17 @@ export const apiSetup = dispatch => {
 };
 
 api.addMonitor(response => {
-  const camelCaseSerializer = new CamelcaseSerializer();
-  response.data = camelCaseSerializer.serialize(response.data);
+  if(response.data) {
+    const camelCaseSerializer = new CamelcaseSerializer();
+    response.data = camelCaseSerializer.serialize(response.data);
+  }
 });
 
 api.addRequestTransform(request => {
-  const snakeCaseSerialize = new SnakecaseSerializer();
-  request.data = snakeCaseSerialize.serialize(request.data);
+  if(request.data) {
+    const snakeCaseSerialize = new SnakecaseSerializer();
+    request.data = snakeCaseSerialize.serialize(request.data);
+  }
 });
 
 export default api;

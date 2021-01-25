@@ -2,7 +2,7 @@ import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
-import { User } from 'typings/user';
+import { User } from '../../../utils/types';
 
 import { signUp } from '../../../services/UserService';
 import CustomInput from '../../components/CustomInput';
@@ -20,14 +20,9 @@ interface FormData extends User {
 
 export default function SignUp() {
   const { register, handleSubmit, watch, errors } = useForm<FormData>({ mode: 'all' });
-  const [state, loading, error, sendRequest] = useLazyRequest({
+  const [, loading, error, sendRequest] = useLazyRequest({
     request: signUp
   });
-
-  if (state) {
-    // eslint-disable-next-line no-console
-    console.log(state);
-  }
 
   const onSubmit = handleSubmit(data => {
     data.locale = i18next.language;

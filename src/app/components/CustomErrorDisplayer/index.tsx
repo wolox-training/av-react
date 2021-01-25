@@ -6,10 +6,10 @@ interface Props {
   errors: string[];
 }
 
-export default function CustomErrorDisplayer(props: Props) {
+export default function CustomErrorDisplayer({ errors }: Props) {
   return (
     <div className="column">
-      {props.errors.map(error => (
+      {errors.map(error => (
         <p key={error} className={styles.error}>
           {error}
         </p>
