@@ -2,7 +2,7 @@ import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
-import { User } from '../../../utils/types';
+import { User } from '~utils/types';
 
 import { signUp } from '../../../services/UserService';
 import CustomInput from '../../components/CustomInput';
