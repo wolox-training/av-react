@@ -52,9 +52,9 @@
   }
 
   .disabled {
-    background-color: #CCC;
-    border: 1px solid #999;
-    color: #666;
+    background-color: $silver;
+    border: 1px solid $dusty-gray;
+    color: $dove-gray;
     cursor: not-allowed;
     pointer-events: none;
   }

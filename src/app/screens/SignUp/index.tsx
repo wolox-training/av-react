@@ -3,12 +3,11 @@ import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
 import { User } from '~utils/types';
-
-import { signUp } from '../../../services/UserService';
-import CustomInput from '../../components/CustomInput';
-import { useLazyRequest } from '../../hooks/useRequest';
-import CustomErrorDisplayer from '../../components/CustomErrorDisplayer';
-import Loading from '../../components/Spinner/components/loading';
+import { signUp } from '~services/UserService';
+import { useLazyRequest } from '~hooks/useRequest';
+import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
+import Loading from '~components/Spinner/components/loading';
+import CustomInput from '~components/CustomInput';
 
 import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';

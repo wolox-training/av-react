@@ -1,7 +1,7 @@
 import { create } from 'apisauce';
 import {CamelcaseSerializer, SnakecaseSerializer} from 'cerealizr';
 
-const baseURL = 'https://books-training-rails.herokuapp.com/api/v1';
+const baseURL =  process.env.REACT_APP_API_BASE_URL;
 
 if (baseURL === 'http://wolox.com') {
   console.warn('API baseURL has not been properly initialized'); // eslint-disable-line no-console
