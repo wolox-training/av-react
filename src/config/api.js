@@ -1,6 +1,7 @@
 import { create } from 'apisauce';
+import {CamelcaseSerializer, SnakecaseSerializer} from 'cerealizr';
 
-const baseURL = 'http://wolox.com';
+const baseURL =  process.env.REACT_APP_API_BASE_URL;
 
 if (baseURL === 'http://wolox.com') {
   console.warn('API baseURL has not been properly initialized'); // eslint-disable-line no-console
@@ -36,5 +37,19 @@ export const apiSetup = dispatch => {
     }
   });
 };
+
+api.addMonitor(response => {
+  if(response.data) {
+    const camelCaseSerializer = new CamelcaseSerializer();
+    response.data = camelCaseSerializer.serialize(response.data);
+  }
+});
+
+api.addRequestTransform(request => {
+  if(request.data) {
+    const snakeCaseSerialize = new SnakecaseSerializer();
+    request.data = snakeCaseSerialize.serialize(request.data);
+  }
+});
 
 export default api;
