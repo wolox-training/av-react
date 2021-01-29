@@ -1,11 +1,13 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 
 import SignUp from './';
 
 const FORM_FIELDS_AMOUNT = 5;
 const MAX_FORM_FIELDS_ERRORS = 5;
+const MINIMUM_ALERT_LENGTH = 1;
 const FORM_BUTTONS_AMOUNT = 2;
 const PASSWORD = 'test';
 const WRONG_CONFIRM_PASSWORD = 'wrongPassword';
@@ -28,13 +30,13 @@ describe('Signup test', () => {
 
   test('Wolox logo should be render and contain alt text', () => {
     render(<SignUp />);
-    expect(screen.getByAltText('SignUp:logoAlt')).toBeTruthy();
+    expect(screen.getByAltText('SignUp:logoAlt')).toBeInTheDocument();
   });
 
   test('Should render email error message', async () => {
     render(<SignUp />);
-    fireEvent.change(screen.getByLabelText('SignUp:email'), { target: { value: 'test' } });
-    await waitFor(() => expect(screen.findByText('SignUp:invalidEmail')).toBeTruthy());
+    userEvent.type(screen.getByLabelText('SignUp:email'), PASSWORD);
+    await waitFor(() => expect(screen.getAllByRole('alert').length).toBe(MINIMUM_ALERT_LENGTH));
   });
 
   test('Should render required message for form fields', async () => {

@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 
 import { SIGN_UP_FIELDS } from '../../screens/SignUp/constants';
 
+import '@testing-library/jest-dom';
+
 import CustomInput from './';
 
 const register = jest.fn();
@@ -38,6 +40,6 @@ describe('Custom input test', () => {
     render(
       <CustomInput name={SIGN_UP_FIELDS.firstName} inputRef={register} error="" label="SignUp:firstName" />
     );
-    expect(screen.getByText('SignUp:firstName')).toBeTruthy();
+    expect(screen.getByText('SignUp:firstName')).toBeInTheDocument();
   });
 });

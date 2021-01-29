@@ -22,10 +22,11 @@
     "wolox-equalizer": "0.0.3"
   },
   "devDependencies": {
-    "@testing-library/react": "^11.2.3",
-    "@testing-library/user-event": "^12.6.2",
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "@rescripts/cli": "0.0.13",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.2",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.20",
     "@types/node": "^12.19.13",
