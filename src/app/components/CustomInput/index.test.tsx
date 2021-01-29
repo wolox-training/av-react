@@ -3,8 +3,6 @@ import { render, screen } from '@testing-library/react';
 
 import { SIGN_UP_FIELDS } from '../../screens/SignUp/constants';
 
-import '@testing-library/jest-dom';
-
 import CustomInput from './';
 
 const register = jest.fn();
