@@ -1,10 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-<<<<<<< HEAD
-import '@testing-library/jest-dom';
-=======
->>>>>>> main
 
 import SignUp from './';
 
