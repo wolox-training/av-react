@@ -82,7 +82,7 @@ export default function SignUp() {
           })}
           error={errors.passwordConfirmation?.message}
           type="password"
-          label={i18next.t('SignUp:passwordsNoMatch') as string}
+          label={i18next.t('SignUp:confirmPassword') as string}
           labelClassName={styles.customLabel}
         />
         <div className={`column ${styles.signupButtonContainer}`}>

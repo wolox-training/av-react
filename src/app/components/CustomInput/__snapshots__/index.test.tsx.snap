@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Custom input test Should match snapshot 1`] = `
+<div>
+  <div
+    class="inputContainer column"
+  >
+    <input
+      class="input full-width"
+      type="text"
+    />
+  </div>
+</div>
+`;
