@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@testing-library/react": "^11.2.3",
-    "@testing-library/user-event": "^12.6.2",
     "apisauce": "^1.1.2",
     "babel-plugin-module-resolver": "^3.2.0",
     "cerealizr": "^1.0.1-alpha",
@@ -24,6 +22,8 @@
     "wolox-equalizer": "0.0.3"
   },
   "devDependencies": {
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.2",
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "@rescripts/cli": "0.0.13",
     "@types/enzyme": "^3.10.8",
