@@ -1,6 +1,7 @@
 import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { User } from '~utils/types';
 import { signUp } from '~services/UserService';
@@ -9,9 +10,11 @@ import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import Loading from '~components/Spinner/components/loading';
 import CustomInput from '~components/CustomInput';
 
+import { PATHS } from '../../../constants/paths';
+import WoloxImg from '../Assets/wolox-logo.png';
+
 import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';
-import WoloxImg from './assets/wolox-logo.png';
 
 interface FormData extends User {
   passwordConfirmation?: string;
@@ -78,7 +81,8 @@ export default function SignUp() {
           name={SIGN_UP_FIELDS.passwordConfirmation}
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:required') },
-            validate: value => value === watch('password') || (i18next.t('SignUp:passwordsNoMatch') as string)
+            validate: value =>
+              value === watch(SIGN_UP_FIELDS.password) || (i18next.t('SignUp:passwordsNoMatch') as string)
           })}
           error={errors.passwordConfirmation?.message}
           type="password"
@@ -87,20 +91,25 @@ export default function SignUp() {
         />
         <div className={`column ${styles.signupButtonContainer}`}>
           <button
-            className={`full-width ${styles.customButton} ${styles.signupButton} 
+            className={`${styles.customButton} ${styles.signupButton} 
             ${loading ? styles.disabled : ''}
+            ${Object.keys(errors).length > 0 ? styles.disabled : ''} 
             `}
             type="submit"
           >
             {i18next.t('SignUp:signUp')}
           </button>
         </div>
-        <button
-          className={`${styles.customButton} ${styles.loginButton} ${loading ? styles.disabled : ''}`}
-          type="button"
-        >
-          {i18next.t('SignUp:login')}
-        </button>
+        <Link to={PATHS.login} className="row">
+          <button
+            className={`${styles.customButton} ${styles.loginButton} 
+            ${loading ? styles.disabled : ''} 
+            full-width`}
+            type="button"
+          >
+            {i18next.t('SignUp:login')}
+          </button>
+        </Link>
       </form>
       {loading && <Loading className={styles.loading} />}
       {error?.errorData?.errors.fullMessages.length && (

@@ -5,7 +5,7 @@ import { SIGN_UP_FIELDS } from '../../screens/SignUp/constants';
 
 import CustomInput from './';
 
-const register = jest.fn();
+const onRegister = jest.fn();
 const ERROR_MESSAGE = 'This is a error message';
 const MINIMUM_ALERT_LENGTH = 1;
 
@@ -17,7 +17,7 @@ describe('Custom input test', () => {
 
   test('Should render input type text as default', () => {
     render(
-      <CustomInput name={SIGN_UP_FIELDS.firstName} inputRef={register} error="" label="SignUp:firstName" />
+      <CustomInput name={SIGN_UP_FIELDS.firstName} inputRef={onRegister} error="" label="SignUp:firstName" />
     );
     expect(screen.getByLabelText('SignUp:firstName').getAttribute('type')).toBe('text');
   });
@@ -26,7 +26,7 @@ describe('Custom input test', () => {
     render(
       <CustomInput
         name={SIGN_UP_FIELDS.firstName}
-        inputRef={register}
+        inputRef={onRegister}
         error={ERROR_MESSAGE}
         label="SignUp:firstName"
       />
@@ -36,7 +36,7 @@ describe('Custom input test', () => {
 
   test('Should render label text', () => {
     render(
-      <CustomInput name={SIGN_UP_FIELDS.firstName} inputRef={register} error="" label="SignUp:firstName" />
+      <CustomInput name={SIGN_UP_FIELDS.firstName} inputRef={onRegister} error="" label="SignUp:firstName" />
     );
     expect(screen.getByText('SignUp:firstName')).toBeInTheDocument();
   });

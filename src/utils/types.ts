@@ -9,7 +9,7 @@ export interface User {
   locale?: string;
 }
 
-export interface SignupSuccess {
+export interface UserRequestSuccess {
   id: number;
   firstName: string;
   lastName: string;
@@ -17,9 +17,14 @@ export interface SignupSuccess {
   locale: string;
 }
 
-export interface SignupError {
+export interface UserSignupRequestFail {
   status: string;
   errors: {
     fullMessages: string[];
   };
+}
+
+export interface UserLoginRequestFail {
+  status: string;
+  errors: string[];
 }

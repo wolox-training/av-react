@@ -5,7 +5,7 @@ import { Nullable } from '~utils/types';
 
 export type Error<E> = { problem: PROBLEM_CODE; errorData?: E };
 type Request<P, D, E> = (params: P) => Promise<ApiResponse<D, E>>;
-type Success<D> = (data?: D) => void;
+type Success<D> = (data?: ApiResponse<D>) => void;
 type Failure<E> = (error: Error<E>) => void;
 type PostFetch<D, E> = (response: ApiOkResponse<D> | ApiErrorResponse<E>) => void;
 
@@ -15,7 +15,7 @@ interface AsyncRequestHookParams<P, D, E> {
   withPostFailure?: Failure<E>;
   initialState?: D | null;
   withPostFetch?: PostFetch<D, E>;
-  transformResponse?: (response: D | E) => any;
+  transformResponse?: (response: ApiResponse<D> | ApiResponse<E>) => any;
 }
 
 interface AsyncRequestHookParamsWithPayload<P, D, E> extends AsyncRequestHookParams<P, D, E> {
@@ -42,7 +42,7 @@ const executeAsyncRequest = async <P, D, E>({
   onPrefetch();
   const response = await request(values);
   if (response.ok) {
-    onSuccess(response.data);
+    onSuccess(response);
   } else {
     onError({ problem: response.problem, errorData: response.data });
   }
@@ -84,7 +84,7 @@ export const useLazyRequest = <P, D, E>({
         onPostFetch: response => {
           setLoading(false);
           if (response.data) {
-            withPostFetch?.(transformResponse(response.data));
+            withPostFetch?.(transformResponse(response));
           }
         }
       });
