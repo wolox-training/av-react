@@ -9,8 +9,8 @@ import { useLazyRequest } from '~hooks/useRequest';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import Loading from '~components/Spinner/components/loading';
 import CustomInput from '~components/CustomInput';
+import { PATHS } from '~constants/paths';
 
-import { PATHS } from '../../../constants/paths';
 import WoloxImg from '../Assets/wolox-logo.png';
 
 import { SIGN_UP_FIELDS } from './constants';

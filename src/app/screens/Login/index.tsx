@@ -8,8 +8,8 @@ import { login } from '~services/UserService';
 import { useLazyRequest } from '~app/hooks/useRequest';
 import Loading from '~components/Spinner/components/loading';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
+import { PATHS } from '~constants/paths';
 
-import { PATHS } from '../../../constants/paths';
 import CustomInput from '../../components/CustomInput';
 import WoloxImg from '../Assets/wolox-logo.png';
 
@@ -23,10 +23,13 @@ export default function Login() {
   });
   // eslint-disable-next-line no-console
   console.log(state?.headers);
-
-  const onSubmit = handleSubmit(data => {
-    sendRequest(data);
-  });
+  const disableButton = () => {
+    if (loading || Object.keys(errors).length > 0) {
+      return true;
+    }
+    return false;
+  };
+  const onSubmit = handleSubmit(data => sendRequest(data));
   return (
     <div className="column center">
       <form className={`column ${styles.loginForm}`} onSubmit={onSubmit}>
@@ -57,10 +60,8 @@ export default function Login() {
         />
         <div className={`column ${styles.loginButtonContainer}`}>
           <button
-            className={`${styles.customButton} ${styles.loginButton}
-            ${loading ? styles.disabled : ''}
-            ${Object.keys(errors).length > 0 ? styles.disabled : ''}
-          `}
+            className={`${styles.customButton} ${styles.loginButton}`}
+            disabled={disableButton()}
             type="submit"
           >
             {i18next.t('Login:login')}
@@ -68,10 +69,9 @@ export default function Login() {
         </div>
         <Link to={PATHS.signup} className="row">
           <button
-            className={`${styles.customButton} ${styles.signupButton} ${
-              loading ? styles.disabled : ''
-            } full-width`}
+            className={`${styles.customButton} ${styles.signupButton} full-width`}
             type="button"
+            disabled={loading}
           >
             {i18next.t('Login:signUp')}
           </button>

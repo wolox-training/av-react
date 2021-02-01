@@ -3,8 +3,8 @@
 .login-form {
   background-color: $wild-sand;
   border-top: 8px solid $cerulean;
-  min-height: 400px;
   margin-top: 51px;
+  min-height: 400px;
   text-align: left;
   width: 300px;
 
@@ -25,6 +25,14 @@
     border-radius: 5px;
     font-size: 16px;
     height: 32px;
+
+    &:disabled {
+      background-color: $silver;
+      border: 1px solid $dusty-gray;
+      color: $dove-gray;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 
   .login-button-container {
@@ -49,14 +57,6 @@
   .login-button {
     background-color: $earls-green;
     color: $white;
-  }
-
-  .disabled {
-    background-color: $silver;
-    border: 1px solid $dusty-gray;
-    color: $dove-gray;
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   .loading {
