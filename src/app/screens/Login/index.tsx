@@ -18,18 +18,11 @@ import styles from './styles.module.scss';
 
 export default function Login() {
   const { register, handleSubmit, errors } = useForm<User>({ mode: 'all' });
-  const [state, loading, error, sendRequest] = useLazyRequest({
+  const [, loading, error, sendRequest] = useLazyRequest({
     request: login
   });
-  // eslint-disable-next-line no-console
-  console.log(state?.headers);
-  const disableButton = () => {
-    if (loading || Object.keys(errors).length > 0) {
-      return true;
-    }
-    return false;
-  };
   const onSubmit = handleSubmit(data => sendRequest(data));
+
   return (
     <div className="column center">
       <form className={`column ${styles.loginForm}`} onSubmit={onSubmit}>
@@ -59,11 +52,7 @@ export default function Login() {
           type="password"
         />
         <div className={`column ${styles.loginButtonContainer}`}>
-          <button
-            className={`${styles.customButton} ${styles.loginButton}`}
-            disabled={disableButton()}
-            type="submit"
-          >
+          <button className={`${styles.customButton} ${styles.loginButton}`} disabled={loading} type="submit">
             {i18next.t('Login:login')}
           </button>
         </div>

@@ -1,5 +1,3 @@
-import { ApiOkResponse } from 'apisauce';
-
 import { UserRequestSuccess, UserLoginRequestFail, UserSignupRequestFail, User } from '../utils/types';
 import api from '../config/api';
 
@@ -10,4 +8,4 @@ export const signUp = (payload: User) =>
   api.post<UserRequestSuccess, UserSignupRequestFail>(SING_UP_URL, payload);
 
 export const login = (payload: User) =>
-  api.post<ApiOkResponse<User>, UserLoginRequestFail>(LOGIN_URL, payload);
+  api.post<UserRequestSuccess, UserLoginRequestFail>(LOGIN_URL, payload);

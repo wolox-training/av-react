@@ -25,6 +25,14 @@
     border-radius: 5px;
     font-size: 16px;
     height: 32px;
+
+    &:disabled {
+      background-color: $silver;
+      border: 1px solid $dusty-gray;
+      color: $dove-gray;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 
   .signup-button-container {
@@ -49,14 +57,6 @@
     border: 1px solid $earls-green;
     color: $earls-green;
     margin: 16px 24px 24px;
-  }
-
-  .disabled {
-    background-color: $silver;
-    border: 1px solid $dusty-gray;
-    color: $dove-gray;
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   .loading {

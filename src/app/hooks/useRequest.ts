@@ -5,7 +5,7 @@ import { Nullable } from '~utils/types';
 
 export type Error<E> = { problem: PROBLEM_CODE; errorData?: E };
 type Request<P, D, E> = (params: P) => Promise<ApiResponse<D, E>>;
-type Success<D> = (data?: ApiResponse<D>) => void;
+type Success<D> = (data?: ApiOkResponse<D>) => void;
 type Failure<E> = (error: Error<E>) => void;
 type PostFetch<D, E> = (response: ApiOkResponse<D> | ApiErrorResponse<E>) => void;
 
@@ -13,7 +13,7 @@ interface AsyncRequestHookParams<P, D, E> {
   request: Request<P, D, E>;
   withPostSuccess?: Success<D>;
   withPostFailure?: Failure<E>;
-  initialState?: D | null;
+  initialState?: ApiOkResponse<D> | null;
   withPostFetch?: PostFetch<D, E>;
   transformResponse?: (response: ApiResponse<D> | ApiResponse<E>) => any;
 }
@@ -57,7 +57,12 @@ export const useLazyRequest = <P, D, E>({
   initialState = null,
   withPostFetch,
   transformResponse = response => response
-}: AsyncRequestHookParams<P, D, E>): [Nullable<D>, boolean, Nullable<Error<E>>, (params: P) => void] => {
+}: AsyncRequestHookParams<P, D, E>): [
+  Nullable<ApiOkResponse<D>>,
+  boolean,
+  Nullable<Error<E>>,
+  (params: P) => void
+] => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Nullable<Error<E>>>(null);
@@ -109,7 +114,7 @@ export const useRequest = <P, D, E>(
     transformResponse = response => response
   }: AsyncRequestHookParamsWithPayload<P, D, E>,
   dependencies: any[]
-): [Nullable<D>, boolean, Nullable<Error<E>>, (params: P) => void] => {
+): [Nullable<ApiOkResponse<D>>, boolean, Nullable<Error<E>>, (params: P) => void] => {
   const [state, loading, error, sendRequest] = useLazyRequest({
     request,
     withPostSuccess,

@@ -25,7 +25,6 @@ export default function SignUp() {
   const [, loading, error, sendRequest] = useLazyRequest({
     request: signUp
   });
-
   const onSubmit = handleSubmit(data => {
     data.locale = i18next.language;
     sendRequest(data);
@@ -91,21 +90,18 @@ export default function SignUp() {
         />
         <div className={`column ${styles.signupButtonContainer}`}>
           <button
-            className={`${styles.customButton} ${styles.signupButton} 
-            ${loading ? styles.disabled : ''}
-            ${Object.keys(errors).length > 0 ? styles.disabled : ''} 
-            `}
+            className={`${styles.customButton} ${styles.signupButton} `}
             type="submit"
+            disabled={loading}
           >
             {i18next.t('SignUp:signUp')}
           </button>
         </div>
         <Link to={PATHS.login} className="row">
           <button
-            className={`${styles.customButton} ${styles.loginButton} 
-            ${loading ? styles.disabled : ''} 
-            full-width`}
+            className={`${styles.customButton} ${styles.loginButton}  full-width`}
             type="button"
+            disabled={loading}
           >
             {i18next.t('SignUp:login')}
           </button>
