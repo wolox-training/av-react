@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login test Should match snapshot 1`] = `
+<div>
+  <div
+    class="column center"
+  >
+    <form
+      class="column loginForm"
+    >
+      <img
+        alt="Login:logoAlt"
+        class="logo"
+        src="wolox-logo.png"
+      />
+      <div
+        class="inputContainer column"
+      >
+        <label
+          class="customLabel"
+          for="email"
+        >
+          Login:email
+        </label>
+        <input
+          class="input full-width"
+          id="email"
+          name="email"
+          type="email"
+        />
+      </div>
+      <div
+        class="inputContainer column"
+      >
+        <label
+          class="customLabel"
+          for="password"
+        >
+          Login:password
+        </label>
+        <input
+          class="input full-width"
+          id="password"
+          name="password"
+          type="password"
+        />
+      </div>
+      <div
+        class="column loginButtonContainer"
+      >
+        <button
+          class="customButton loginButton"
+          type="submit"
+        >
+          Login:login
+        </button>
+      </div>
+      <a
+        class="row"
+        href="/sign_up"
+      >
+        <button
+          class="customButton signupButton full-width"
+          type="button"
+        >
+          Login:signUp
+        </button>
+      </a>
+    </form>
+  </div>
+</div>
+`;

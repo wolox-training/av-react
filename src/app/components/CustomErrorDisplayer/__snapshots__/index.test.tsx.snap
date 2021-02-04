@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomErrorDisplayer test Should match snapshot 1`] = `
+<div>
+  <div
+    class="column"
+  >
+    <p
+      class="error"
+      role="alert"
+    >
+      Email already taken
+    </p>
+    <p
+      class="error"
+      role="alert"
+    >
+      Password do not match
+    </p>
+  </div>
+</div>
+`;
