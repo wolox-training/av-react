@@ -5,15 +5,16 @@ import { Link, useHistory } from 'react-router-dom';
 import { ApiOkResponse } from 'apisauce';
 
 import { saveInLocalStorage } from '~utils/functions';
-import { ACCESS_TOKEN_KEY } from '~utils/constants';
+import { TOKEN_KEY } from '~utils/constants';
 import { PATHS } from '~constants/paths';
 import { User, UserRequestSuccess } from '~utils/types';
 import { signUp } from '~services/UserService';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import Loading from '~components/Spinner/components/loading';
 import CustomInput from '~components/CustomInput';
+// eslint-disable-next-line import/namespace
+import { useLazyRequest } from '~hooks/useRequest';
 
-import { useLazyRequest } from '../../hooks/useRequest';
 import WoloxImg from '../Assets/wolox-logo.png';
 
 import { SIGN_UP_FIELDS } from './constants';
@@ -28,7 +29,7 @@ export default function SignUp() {
 
   const signupSuccess = (data?: ApiOkResponse<UserRequestSuccess>) => {
     if (data?.headers) {
-      saveInLocalStorage(ACCESS_TOKEN_KEY, data.headers[ACCESS_TOKEN_KEY]);
+      saveInLocalStorage(TOKEN_KEY, data.headers[TOKEN_KEY]);
       history.push(PATHS.login);
     }
   };

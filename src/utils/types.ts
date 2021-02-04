@@ -1,3 +1,5 @@
+import { TOKEN_KEY } from './constants';
+
 export type Nullable<T> = T | null;
 
 export interface User {
@@ -15,6 +17,7 @@ export interface UserRequestSuccess {
   lastName: string;
   email: string;
   locale: string;
+  [TOKEN_KEY]: string;
 }
 
 export interface UserSignupRequestFail {
