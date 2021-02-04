@@ -6,11 +6,15 @@ import { PATHS } from '../constants/paths';
 
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
+import Home from './screens/Home';
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path={PATHS.home}>
+          <Home />
+        </Route>
         <Route path={PATHS.signup}>
           <SignUp />
         </Route>
