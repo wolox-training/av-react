@@ -1,14 +1,17 @@
 import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { User } from '~utils/types';
+import { User, UserRequestSuccess } from '~utils/types';
 import { login } from '~services/UserService';
+// eslint-disable-next-line import/namespace
 import { useLazyRequest } from '~app/hooks/useRequest';
 import Loading from '~components/Spinner/components/loading';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import { PATHS } from '~constants/paths';
+import { TOKEN_KEY } from '~utils/constants';
+import LocalStorageService from '~services/LocalStorageService';
 
 import CustomInput from '../../components/CustomInput';
 import WoloxImg from '../Assets/wolox-logo.png';
@@ -17,9 +20,19 @@ import { LOGIN_FIELDS } from './constants';
 import styles from './styles.module.scss';
 
 export default function Login() {
+  const history = useHistory();
+
+  const loginSuccess = (data?: UserRequestSuccess) => {
+    if (data) {
+      LocalStorageService.setValue(TOKEN_KEY, data.accessToken);
+      history.push(PATHS.home);
+    }
+  };
+
   const { register, handleSubmit, errors } = useForm<User>({ mode: 'all' });
   const [, loading, error, sendRequest] = useLazyRequest({
-    request: login
+    request: login,
+    withPostSuccess: loginSuccess
   });
   const onSubmit = handleSubmit(data => sendRequest(data));
 

@@ -1,4 +1,22 @@
+@import 'variables/colors';
+
 .appbar {
+  border-top: 6px solid $cerulean;
+  box-shadow: 0 0 12px $black;
   height: 70px;
   width: 100%;
+
+  .logo {
+    height: 70px;
+    width: 212px;
+  }
+
+  .logout {
+    color: $black;
+    font-size: 18px;
+    height: 18px;
+    line-height: 21px;
+    cursor: pointer;
+    width: 63px;
+  }
 }
