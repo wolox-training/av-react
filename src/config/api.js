@@ -43,7 +43,7 @@ api.addMonitor(response => {
   if(response.config.url === SING_UP_URL || response.config.url === LOGIN_URL){
     response.data = {
       ...response.data,
-      [TOKEN_KEY]: response.headers[TOKEN_KEY]
+      accessToken: response.headers[TOKEN_KEY]
     }
   }
 });
