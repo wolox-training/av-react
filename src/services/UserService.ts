@@ -1,4 +1,4 @@
-import { UserRequestSuccess, User, UserSignupRequestFail, UserLoginRequestFail } from '../utils/types';
+import { UserRequestSuccess, UserLoginRequestFail, UserSignupRequestFail, User } from '../utils/types';
 import api from '../config/api';
 import { SING_UP_URL, LOGIN_URL } from '../utils/constants';
 
