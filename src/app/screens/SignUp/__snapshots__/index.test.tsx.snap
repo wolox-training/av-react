@@ -97,136 +97,23 @@ exports[`Signup test Should match snapshot 1`] = `
         class="column signupButtonContainer"
       >
         <button
-          class="full-width customButton signupButton 
-            
-            "
+          class="customButton signupButton "
           type="submit"
         >
           SignUp:signUp
         </button>
       </div>
-      <button
-        class="customButton loginButton "
-        type="button"
-      >
-        SignUp:login
-      </button>
-    </form>
-  </div>
-</div>
-`;
-
-exports[`Signup test asdasd 1`] = `
-<div>
-  <div
-    class="column center"
-  >
-    <form
-      class="column signupForm"
-    >
-      <img
-        alt="SignUp:logoAlt"
-        class="logo"
-        src="wolox-logo.png"
-      />
-      <div
-        class="inputContainer column"
-      >
-        <label
-          class="customLabel"
-          for="firstName"
-        >
-          SignUp:firstName
-        </label>
-        <input
-          class="input full-width"
-          id="firstName"
-          name="firstName"
-          type="text"
-        />
-      </div>
-      <div
-        class="inputContainer column"
-      >
-        <label
-          class="customLabel"
-          for="lastName"
-        >
-          SignUp:lastName
-        </label>
-        <input
-          class="input full-width"
-          id="lastName"
-          name="lastName"
-          type="text"
-        />
-      </div>
-      <div
-        class="inputContainer column"
-      >
-        <label
-          class="customLabel"
-          for="email"
-        >
-          SignUp:email
-        </label>
-        <input
-          class="input full-width"
-          id="email"
-          name="email"
-          type="email"
-        />
-      </div>
-      <div
-        class="inputContainer column"
-      >
-        <label
-          class="customLabel"
-          for="password"
-        >
-          SignUp:password
-        </label>
-        <input
-          class="input full-width"
-          id="password"
-          name="password"
-          type="password"
-        />
-      </div>
-      <div
-        class="inputContainer column"
-      >
-        <label
-          class="customLabel"
-          for="passwordConfirmation"
-        >
-          SignUp:confirmPassword
-        </label>
-        <input
-          class="input full-width"
-          id="passwordConfirmation"
-          name="passwordConfirmation"
-          type="password"
-        />
-      </div>
-      <div
-        class="column signupButtonContainer"
+      <a
+        class="row"
+        href="/"
       >
         <button
-          class="full-width customButton signupButton 
-            
-            "
-          type="submit"
+          class="customButton loginButton  full-width"
+          type="button"
         >
-          SignUp:signUp
+          SignUp:login
         </button>
-      </div>
-      <button
-        class="customButton loginButton "
-        type="button"
-      >
-        SignUp:login
-      </button>
+      </a>
     </form>
   </div>
 </div>

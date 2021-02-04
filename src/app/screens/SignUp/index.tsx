@@ -1,16 +1,19 @@
 import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { ApiOkResponse } from 'apisauce';
 
-import { User } from '~utils/types';
+import { saveInLocalStorage } from '~utils/functions';
+import { ACCESS_TOKEN_KEY } from '~utils/constants';
+import { PATHS } from '~constants/paths';
+import { User, UserRequestSuccess } from '~utils/types';
 import { signUp } from '~services/UserService';
-import { useLazyRequest } from '~hooks/useRequest';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import Loading from '~components/Spinner/components/loading';
 import CustomInput from '~components/CustomInput';
-import { PATHS } from '~constants/paths';
 
+import { useLazyRequest } from '../../hooks/useRequest';
 import WoloxImg from '../Assets/wolox-logo.png';
 
 import { SIGN_UP_FIELDS } from './constants';
@@ -21,9 +24,18 @@ interface FormData extends User {
 }
 
 export default function SignUp() {
+  const history = useHistory();
+
+  const signupSuccess = (data?: ApiOkResponse<UserRequestSuccess>) => {
+    if (data?.headers) {
+      saveInLocalStorage(ACCESS_TOKEN_KEY, data.headers[ACCESS_TOKEN_KEY]);
+      history.push(PATHS.login);
+    }
+  };
   const { register, handleSubmit, watch, errors } = useForm<FormData>({ mode: 'all' });
   const [, loading, error, sendRequest] = useLazyRequest({
-    request: signUp
+    request: signUp,
+    withPostSuccess: signupSuccess
   });
   const onSubmit = handleSubmit(data => {
     data.locale = i18next.language;
