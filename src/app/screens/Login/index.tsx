@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 
 import { User } from '~utils/types';
 import { login } from '~services/UserService';
+import { useLazyRequest } from '~app/hooks/useRequest';
 import Loading from '~components/Spinner/components/loading';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import { PATHS } from '~constants/paths';
 
-import { useLazyRequest } from '../../hooks/useRequest';
 import CustomInput from '../../components/CustomInput';
 import WoloxImg from '../Assets/wolox-logo.png';
 
@@ -22,6 +22,7 @@ export default function Login() {
     request: login
   });
   const onSubmit = handleSubmit(data => sendRequest(data));
+
   return (
     <div className="column center">
       <form className={`column ${styles.loginForm}`} onSubmit={onSubmit}>
