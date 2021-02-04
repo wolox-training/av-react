@@ -10,7 +10,7 @@ export default function CustomErrorDisplayer({ errors }: Props) {
   return (
     <div className="column">
       {errors.map(error => (
-        <p key={error} className={styles.error}>
+        <p role="alert" key={error} className={styles.error}>
           {error}
         </p>
       ))}

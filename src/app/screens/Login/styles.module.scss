@@ -1,10 +1,10 @@
 @import 'variables/colors';
 
-.signup-form {
+.login-form {
   background-color: $wild-sand;
   border-top: 8px solid $cerulean;
-  min-height: 634px;
   margin-top: 51px;
+  min-height: 400px;
   text-align: left;
   width: 300px;
 
@@ -35,7 +35,7 @@
     }
   }
 
-  .signup-button-container {
+  .login-button-container {
     margin: 24px 24px 0;
 
     &::after {
@@ -48,15 +48,15 @@
   }
 
   .signup-button {
-    background-color: $earls-green;
-    color: $white;
-  }
-
-  .login-button {
     background-color: $white;
     border: 1px solid $earls-green;
     color: $earls-green;
     margin: 16px 24px 24px;
+  }
+
+  .login-button {
+    background-color: $earls-green;
+    color: $white;
   }
 
   .loading {

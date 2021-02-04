@@ -1,5 +1,6 @@
 import { create } from 'apisauce';
 import {CamelcaseSerializer, SnakecaseSerializer} from 'cerealizr';
+import { SING_UP_URL, LOGIN_URL } from '../utils/constants';
 
 const baseURL =  process.env.REACT_APP_API_BASE_URL;
 
@@ -17,7 +18,7 @@ const api = create({
    * baseURL: process.env.API_BASE_URL,
    */
   baseURL,
-  timeout: 15000
+  timeout: 15000,
 });
 
 // eslint-disable-next-line no-unused-vars, prettier/prettier, @typescript-eslint/no-unused-vars
@@ -37,6 +38,15 @@ export const apiSetup = dispatch => {
     }
   });
 };
+
+api.addMonitor(response => {
+  if(response.config.url === SING_UP_URL || response.config.url === LOGIN_URL){
+    response.data = {
+      ...response.data,
+      [TOKEN_KEY]: response.headers.TOKEN_KEY
+    }
+  }
+});
 
 api.addMonitor(response => {
   if(response.data) {

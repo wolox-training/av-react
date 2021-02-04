@@ -1,6 +1,9 @@
-import { SignupSuccess, SignupError, User } from '../utils/types';
+import { UserRequestSuccess, UserLoginRequestFail, UserSignupRequestFail, User } from '../utils/types';
 import api from '../config/api';
+import { SING_UP_URL, LOGIN_URL } from '../utils/constants';
 
-const SING_UP_URL = 'users';
+export const signUp = (payload: User) =>
+  api.post<UserRequestSuccess, UserSignupRequestFail>(SING_UP_URL, payload);
 
-export const signUp = (payload: User) => api.post<SignupSuccess, SignupError>(SING_UP_URL, payload);
+export const login = (payload: User) =>
+  api.post<UserRequestSuccess, UserLoginRequestFail>(LOGIN_URL, payload);

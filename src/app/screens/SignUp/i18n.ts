@@ -10,6 +10,6 @@ i18next.addResources('es', 'SignUp', {
   login: 'Login',
   confirmPassword: 'Confirmación de Password',
   required: 'Requerido',
-  invalidEmail: 'Email inválido',
+  invalidEmail: 'El formato de mail no es correcto',
   passwordsNoMatch: 'Los passwords no coinciden'
 });
