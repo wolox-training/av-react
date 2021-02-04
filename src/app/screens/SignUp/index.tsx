@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 
 import { User } from '~utils/types';
 import { signUp } from '~services/UserService';
-import { useLazyRequest } from '~hooks/useRequest';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import Loading from '~components/Spinner/components/loading';
 import CustomInput from '~components/CustomInput';
 import { PATHS } from '~constants/paths';
+// eslint-disable-next-line import/namespace
+import { useLazyRequest } from '~hooks/useRequest';
 
 import WoloxImg from '../Assets/wolox-logo.png';
 
