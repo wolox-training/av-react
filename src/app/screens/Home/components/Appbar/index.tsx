@@ -4,7 +4,8 @@ import { useHistory } from 'react-router';
 
 import { PATHS } from '~constants/paths';
 import LocalStorageService from '~services/LocalStorageService';
-import { TOKEN_KEY } from '~utils/constants';
+import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~utils/constants';
+import { useDispatch, actionCreators } from '~app/contexts/User/reducer';
 
 import WoloxImg from '../../../Assets/wolox-logo.png';
 
@@ -12,8 +13,12 @@ import styles from './styles.module.scss';
 
 export default function Appbar() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const logout = () => {
+    dispatch(actionCreators.closeSession());
     LocalStorageService.removeValue(TOKEN_KEY);
+    LocalStorageService.removeValue(UID_KEY);
+    LocalStorageService.removeValue(CLIENT_KEY);
     history.push(PATHS.login);
   };
 

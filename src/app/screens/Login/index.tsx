@@ -13,6 +13,7 @@ import { PATHS } from '~constants/paths';
 import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~utils/constants';
 import LocalStorageService from '~services/LocalStorageService';
 import CustomInput from '~components/CustomInput';
+import { useDispatch, actionCreators } from '~app/contexts/User/reducer';
 
 import WoloxImg from '../Assets/wolox-logo.png';
 
@@ -21,22 +22,24 @@ import styles from './styles.module.scss';
 
 export default function Login() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const loginSuccess = (data?: UserRequestSuccess) => {
     if (data) {
+      dispatch(actionCreators.setSession(data.accessToken, data.uid, data.client));
       LocalStorageService.setValue(TOKEN_KEY, data.accessToken);
       LocalStorageService.setValue(UID_KEY, data.uid);
       LocalStorageService.setValue(CLIENT_KEY, data.client);
       history.push(PATHS.home);
     }
   };
-
   const { register, handleSubmit, errors } = useForm<User>({ mode: 'all' });
   const [, loading, error, sendRequest] = useLazyRequest({
     request: login,
     withPostSuccess: loginSuccess
   });
   const onSubmit = handleSubmit(data => sendRequest(data));
+
   return (
     <div className="column center">
       <form className={`column ${styles.loginForm}`} onSubmit={onSubmit}>
