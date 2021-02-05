@@ -10,10 +10,10 @@ import { useLazyRequest } from '~app/hooks/useRequest';
 import Loading from '~components/Spinner/components/loading';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import { PATHS } from '~constants/paths';
-import { TOKEN_KEY } from '~utils/constants';
+import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~utils/constants';
 import LocalStorageService from '~services/LocalStorageService';
+import CustomInput from '~components/CustomInput';
 
-import CustomInput from '../../components/CustomInput';
 import WoloxImg from '../Assets/wolox-logo.png';
 
 import { LOGIN_FIELDS } from './constants';
@@ -25,6 +25,8 @@ export default function Login() {
   const loginSuccess = (data?: UserRequestSuccess) => {
     if (data) {
       LocalStorageService.setValue(TOKEN_KEY, data.accessToken);
+      LocalStorageService.setValue(UID_KEY, data.uid);
+      LocalStorageService.setValue(CLIENT_KEY, data.client);
       history.push(PATHS.home);
     }
   };
@@ -35,7 +37,6 @@ export default function Login() {
     withPostSuccess: loginSuccess
   });
   const onSubmit = handleSubmit(data => sendRequest(data));
-
   return (
     <div className="column center">
       <form className={`column ${styles.loginForm}`} onSubmit={onSubmit}>

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Book test Should match snapshot 1`] = `
+<div>
+  <div
+    class="book column"
+  >
+    <img
+      alt="BooksList:bookAlt"
+      class="bookImage"
+      src="test url"
+    />
+    <div
+      class="bookTitle"
+    >
+      test title
+    </div>
+    <div
+      class="bookAuthor"
+    >
+      test author
+    </div>
+  </div>
+  <div
+    class="book column"
+  >
+    <img
+      alt="BooksList:bookAlt"
+      class="bookImage"
+      src="test url 2"
+    />
+    <div
+      class="bookTitle"
+    >
+      test title 2
+    </div>
+    <div
+      class="bookAuthor"
+    >
+      test author 2
+    </div>
+  </div>
+</div>
+`;

@@ -75,7 +75,5 @@ describe('Login test', () => {
     userEvent.click(screen.getByText('Login:login'));
 
     await waitFor(() => expect(localStorage.setItem).toHaveBeenCalled());
-    server.resetHandlers();
-    server.close();
   });
 });

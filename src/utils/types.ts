@@ -16,6 +16,8 @@ export interface UserRequestSuccess {
   email: string;
   locale: string;
   accessToken: string;
+  client: string;
+  uid: string;
 }
 
 export interface UserSignupRequestFail {
@@ -24,8 +26,35 @@ export interface UserSignupRequestFail {
     fullMessages: string[];
   };
 }
-
 export interface UserLoginRequestFail {
   status: string;
   errors: string[];
+}
+
+export interface Books {
+  id: number;
+  author: string;
+  title: string;
+  imageUrl: string;
+  publisher: string;
+  year: number;
+  genre: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BooksRequestFail {
+  status: string;
+  errors: {
+    fullMessages: string[];
+  };
+}
+
+export interface BooksRequestSucess {
+  count: number;
+  currentPage: number;
+  nextPage: number;
+  page: Books[];
+  totalCount: number;
+  totalPages: number;
 }

@@ -1,6 +1,6 @@
 import { create } from 'apisauce';
 import {CamelcaseSerializer, SnakecaseSerializer} from 'cerealizr';
-import { SING_UP_URL, LOGIN_URL, TOKEN_KEY } from '../utils/constants';
+import { LOGIN_URL, TOKEN_KEY, CLIENT_KEY, UID_KEY } from '../utils/constants';
 
 const baseURL =  process.env.REACT_APP_API_BASE_URL;
 
@@ -40,10 +40,12 @@ export const apiSetup = dispatch => {
 };
 
 api.addMonitor(response => {
-  if(response.config.url === SING_UP_URL || response.config.url === LOGIN_URL){
+  if(response.config.url === LOGIN_URL){
     response.data = {
       ...response.data,
-      accessToken: response.headers[TOKEN_KEY]
+      accessToken: response.headers[TOKEN_KEY],
+      client: response.headers[CLIENT_KEY],
+      uid: response.headers[UID_KEY]
     }
   }
 });
