@@ -58,3 +58,14 @@ export interface BooksRequestSucess {
   totalCount: number;
   totalPages: number;
 }
+
+export interface BookSuccess {
+  id: number;
+  author: string;
+  title: string;
+  imageUrl: string;
+  editor: string;
+  year: number;
+  genre: string;
+  currentRent: boolean;
+}

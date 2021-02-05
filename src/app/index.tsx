@@ -12,6 +12,7 @@ import { PATHS } from '../constants/paths';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import BookDetail from './screens/BookDetail';
 
 function App() {
   const tokenExist = useSelector(state => state.accessToken) || LocalStorageService.getValue(TOKEN_KEY);
@@ -19,7 +20,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path={PATHS.home} render={() => (tokenExist ? <Home /> : <Login />)} />
+        <Route path={PATHS.home} exact render={() => (tokenExist ? <Home /> : <Login />)} />
+        <Route path={`${PATHS.bookDetail}`}>
+          <BookDetail />
+        </Route>
         <Route path={PATHS.signup}>
           <SignUp />
         </Route>

@@ -1,10 +1,10 @@
 import api from '~config/api';
 import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~utils/constants';
-import { BooksRequestSucess, BooksRequestFail } from '~utils/types';
+import { BooksRequestSucess, BooksRequestFail, BookSuccess } from '~utils/types';
 
 import LocalStorageService from './LocalStorageService';
 
-const GET_BOOKS_URL = 'books';
+const GET_BOOKS_URL = 'books/';
 const HEADERS = {
   [TOKEN_KEY]: LocalStorageService.getValue(TOKEN_KEY),
   client: LocalStorageService.getValue(CLIENT_KEY),
@@ -14,4 +14,9 @@ const HEADERS = {
 export const getBooks = () => {
   api.setHeaders(HEADERS);
   return api.get<BooksRequestSucess, BooksRequestFail>(GET_BOOKS_URL);
+};
+
+export const getBook = (payload: number) => {
+  api.setHeaders(HEADERS);
+  return api.get<BookSuccess, BooksRequestFail>(`${GET_BOOKS_URL}${payload}`);
 };

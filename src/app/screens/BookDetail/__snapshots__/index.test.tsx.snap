@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookDetail test Should match snapshot 1`] = `
+<div>
+  <div
+    class="bookDetail row center"
+  >
+    <div
+      class="sk-fade-in-half-second sk-spinner sk-three-bounce"
+      color="#000"
+      style="color: rgb(0, 0, 0);"
+    >
+      <div />
+      <div />
+      <div />
+    </div>
+  </div>
+</div>
+`;

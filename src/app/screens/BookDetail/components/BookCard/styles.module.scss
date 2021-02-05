@@ -1,0 +1,87 @@
+@import 'variables/colors';
+
+.back-wrapper {
+  cursor: pointer;
+
+  .back-arrow {
+    height: 20px;
+    width: 20px;
+  }
+
+  .back-text {
+    color: $black;
+    font-size: 20px;
+    height: 20px;
+    line-height: 24px;
+    margin-left: 2px;
+    width: 59px;
+  }
+}
+
+.book-card {
+  box-shadow: 5px 5px 10px 6px $silver;
+  margin-top: 108px;
+  height: 416px;
+  width: 900px;
+
+  .book-img {
+    flex-shrink: 0;
+    height: 368px;
+    margin: 24px 0 24px 24px;
+    width: 261px;
+  }
+
+  .badge {
+    height: 118.57px;
+    margin: 1.73px 0 0 223.73px;
+    position: absolute;
+    width: 94.53px;
+  }
+
+  .book-info {
+    margin: 24px 0 0 52px;
+    width: 100%;
+  }
+
+  .title-wrapper {
+    &::after {
+      content: '';
+      background-color: $earls-green;
+      display: block;
+      height: 4px;
+      margin: 15px 24px 0 0;
+    }
+  }
+
+  .book-title {
+    color: $black;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38px;
+  }
+
+  .book-genre {
+    color: $gray;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-left: 8px;
+  }
+
+  .book-details {
+    margin-top: 36px;
+  }
+
+  .book-details-index {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .book-details-item {
+    color: $gray;
+    font-size: 20px;
+    line-height: 24px;
+    margin-left: 8px;
+  }
+}
