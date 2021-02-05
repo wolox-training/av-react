@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ReactWrapper } from 'enzyme';
 
 import { OK_SIGNUP_API_RESPONSE } from './mocks';
 
@@ -24,87 +25,58 @@ const server = setupServer(
   )
 );
 
+beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('Signup test', () => {
-  test('Should match snapshot', () => {
-    const { container } = render(
+  let container: Element | null = null;
+
+  beforeEach(() => {
+    const { container: renderContainer } = render(
       <Router>
         <SignUp />
       </Router>
     );
+    container = renderContainer;
+  });
+
+  test('Should match snapshot', () => {
     expect(container).toMatchSnapshot();
   });
 
   test('Should render 5 form inputs', () => {
-    const { container } = render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
-    expect(container.querySelectorAll('input').length).toBe(FORM_FIELDS_AMOUNT);
+    expect(container?.querySelectorAll('input').length).toBe(FORM_FIELDS_AMOUNT);
   });
 
   test('Should render 2 buttons', () => {
-    render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
     expect(screen.getAllByRole('button')).toHaveLength(FORM_BUTTONS_AMOUNT);
   });
 
   test('Wolox logo should be render and contain alt text', () => {
-    render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
     expect(screen.getByAltText('SignUp:logoAlt')).toBeInTheDocument();
   });
 
   test('Should render email error message', async () => {
-    render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
     userEvent.type(screen.getByLabelText('SignUp:email'), PASSWORD);
     await waitFor(() => expect(screen.getAllByRole('alert').length).toBe(MINIMUM_ALERT_LENGTH));
   });
 
   test('Should render required message for form fields', async () => {
-    render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
     fireEvent.click(screen.getByText('SignUp:signUp'));
     await waitFor(() => expect(screen.getAllByRole('alert').length).toBe(MAX_FORM_FIELDS_ERRORS));
   });
 
   test('Should render password match error', async () => {
-    render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
     userEvent.type(screen.getByLabelText('SignUp:password'), PASSWORD);
     userEvent.type(screen.getByLabelText('SignUp:confirmPassword'), WRONG_CONFIRM_PASSWORD);
     await waitFor(() => expect(screen.getAllByRole('alert').length).toBe(MINIMUM_ALERT_LENGTH));
   });
 
   test('Local storage should be called after sucess signup request.', async () => {
-    server.listen();
     // eslint-disable-next-line no-proto
     jest.spyOn(window.localStorage.__proto__, 'setItem');
 
-    render(
-      <Router>
-        <SignUp />
-      </Router>
-    );
     userEvent.type(screen.getByLabelText('SignUp:firstName'), 'test');
     userEvent.type(screen.getByLabelText('SignUp:lastName'), 'test');
     userEvent.type(screen.getByLabelText('SignUp:email'), 'test123@test.com');
