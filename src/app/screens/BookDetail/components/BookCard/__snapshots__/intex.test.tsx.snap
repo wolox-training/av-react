@@ -81,7 +81,7 @@ exports[`BookDetail test Should match snapshot 1`] = `
           <span
             class="bookDetailsIndex"
           >
-            BookCard:publishDate
+            BookCard:publishYearh
           </span>
           <span
             class="bookDetailsItem"

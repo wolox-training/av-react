@@ -37,7 +37,7 @@ export interface Books {
   title: string;
   imageUrl: string;
   publisher: string;
-  year: number;
+  year: string;
   genre: string;
   createdAt: string;
   updatedAt: string;
@@ -65,7 +65,7 @@ export interface BookSuccess {
   title: string;
   imageUrl: string;
   editor: string;
-  year: number;
+  year: string;
   genre: string;
   currentRent: boolean;
 }

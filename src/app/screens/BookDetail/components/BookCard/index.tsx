@@ -15,7 +15,6 @@ interface BookProps {
 
 export default function BookData({ data }: BookProps) {
   const history = useHistory();
-
   return (
     <div>
       <div className={`${styles.backWrapper} row middle`} onClick={() => history.goBack()}>
@@ -43,7 +42,7 @@ export default function BookData({ data }: BookProps) {
             <span className={styles.bookDetailsItem}>{data?.editor}</span>
           </div>
           <div className={styles.bookDetails}>
-            <span className={styles.bookDetailsIndex}>{i18next.t('BookCard:publishDate')}</span>
+            <span className={styles.bookDetailsIndex}>{i18next.t('BookCard:publishYearh')}</span>
             <span className={styles.bookDetailsItem}>{data?.year}</span>
           </div>
         </div>

@@ -4,7 +4,7 @@ export const OK_BOOK_RESPONSE_API = {
   title: 'title',
   imageUrl: 'imageurl',
   editor: 'editor',
-  year: 1900,
+  year: '1900',
   genre: 'genre',
   currentRent: false
 };

@@ -21,9 +21,7 @@ function App() {
     <Router>
       <Switch>
         <Route path={PATHS.home} exact render={() => (tokenExist ? <Home /> : <Login />)} />
-        <Route path={`${PATHS.bookDetail}`}>
-          <BookDetail />
-        </Route>
+        <Route path={`${PATHS.bookDetail}`} render={() => (tokenExist ? <BookDetail /> : <Login />)} />
         <Route path={PATHS.signup}>
           <SignUp />
         </Route>
