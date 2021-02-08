@@ -10,15 +10,7 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
   labelClassName?: string;
 }
 
-export default function CustomInput({
-  inputRef,
-  error,
-  type = 'text',
-  label,
-  labelClassName,
-  name,
-  ...props
-}: Props) {
+function CustomInput({ inputRef, error, type = 'text', label, labelClassName, name, ...props }: Props) {
   return (
     <div className={`${styles.inputContainer} column`}>
       {label && (
@@ -42,3 +34,5 @@ export default function CustomInput({
     </div>
   );
 }
+
+export default CustomInput;

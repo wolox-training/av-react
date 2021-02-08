@@ -7,13 +7,18 @@ const errorMsgs = ['Email already taken', 'Password do not match'];
 const MAX_ALERTS_LENGTH = 2;
 
 describe('CustomErrorDisplayer test', () => {
+  let container: Element | null = null;
+
+  beforeEach(() => {
+    const { container: renderContainer } = render(<CustomErrorDisplayer errors={errorMsgs} />);
+    container = renderContainer;
+  });
+
   test('Should match snapshot', () => {
-    const { container } = render(<CustomErrorDisplayer errors={errorMsgs} />);
     expect(container).toMatchSnapshot();
   });
 
   test('Should render error messages', () => {
-    render(<CustomErrorDisplayer errors={errorMsgs} />);
     expect(screen.getAllByRole('alert').length).toBe(MAX_ALERTS_LENGTH);
   });
 });

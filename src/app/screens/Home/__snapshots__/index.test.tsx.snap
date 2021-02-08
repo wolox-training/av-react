@@ -5,7 +5,7 @@ exports[`Home test Should match snapshot 1`] = `
   <div
     class="home column"
   >
-    <header
+    <nav
       class="appbar row space-around middle"
     >
       <img
@@ -18,7 +18,7 @@ exports[`Home test Should match snapshot 1`] = `
       >
         Home:logout
       </h2>
-    </header>
+    </nav>
   </div>
 </div>
 `;
