@@ -4,14 +4,12 @@ import '@testing-library/jest-dom';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 
-import { BASE_URL, LOGIN_URL } from '~config/api/constants';
+import { EDNPOINTS, STATUS_CODE } from '~config/api/constants';
 import { OK_LOGIN_API_RESPONSE } from '~app/screens/Login/mocks';
 
-const STATUS_CREATED = 201;
-
 export const server = setupServer(
-  rest.post(`${BASE_URL}${LOGIN_URL}`, (req, res, ctx) =>
-    res(ctx.status(STATUS_CREATED), ctx.json(OK_LOGIN_API_RESPONSE))
+  rest.post(`${EDNPOINTS.baseUrl}${EDNPOINTS.login}`, (req, res, ctx) =>
+    res(ctx.status(STATUS_CODE.created), ctx.json(OK_LOGIN_API_RESPONSE))
   )
 );
 
