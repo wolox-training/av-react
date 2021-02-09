@@ -12,31 +12,27 @@ const history = createMemoryHistory();
 const pushSpy = jest.spyOn(history, 'push');
 
 describe('Home test', () => {
-  test('Should match snapshot', () => {
-    const { container } = render(
+  let container: Element | null = null;
+
+  beforeEach(() => {
+    const { container: renderContainer } = render(
       <Router history={history}>
         <Home />
       </Router>
     );
+    container = renderContainer;
+  });
+
+  test('Should match snapshot', () => {
     expect(container).toMatchSnapshot();
   });
 
   test('Should render appbar content', () => {
-    render(
-      <Router history={history}>
-        <Home />
-      </Router>
-    );
     expect(screen.getByAltText('Home:logoAlt')).toBeInTheDocument();
     expect(screen.getByText('Home:logout')).toBeInTheDocument();
   });
 
   test('Should redirect to login', async () => {
-    render(
-      <Router history={history}>
-        <Home />
-      </Router>
-    );
     userEvent.click(screen.getByText('Home:logout'));
     await waitFor(() => expect(pushSpy).toHaveBeenCalledWith(PATHS.login));
   });

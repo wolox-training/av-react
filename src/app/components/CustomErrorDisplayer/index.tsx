@@ -6,7 +6,7 @@ interface Props {
   errors: string[];
 }
 
-export default function CustomErrorDisplayer({ errors }: Props) {
+function CustomErrorDisplayer({ errors }: Props) {
   return (
     <div className="column">
       {errors.map(error => (
@@ -17,3 +17,5 @@ export default function CustomErrorDisplayer({ errors }: Props) {
     </div>
   );
 }
+
+export default CustomErrorDisplayer;
