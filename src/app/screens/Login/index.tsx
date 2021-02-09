@@ -5,7 +5,6 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { User, UserRequestSuccess } from '~utils/types';
 import { login } from '~services/UserService';
-// eslint-disable-next-line import/namespace
 import { useLazyRequest } from '~hooks/useRequest';
 import Loading from '~components/Spinner/components/loading';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';

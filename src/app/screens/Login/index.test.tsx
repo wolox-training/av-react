@@ -2,18 +2,11 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { rest } from 'msw';
-
-import { server } from '../../../setupTests';
-
-import { OK_LOGIN_API_RESPONSE } from './mocks';
 
 import Login from './';
 
 const MAX_BUTTONS_LENGTH = 2;
 const MAX_ALERTS_LENGTH = 2;
-const API_URL = `${process.env.REACT_APP_API_BASE_URL}/users/sign_in`;
-const STATUS_CREATED = 201;
 
 describe('Login test', () => {
   let container: Element | null = null;
@@ -46,11 +39,6 @@ describe('Login test', () => {
   });
 
   test('Local storage should be called after sucess login request.', async () => {
-    server.use(
-      rest.post(`${API_URL}`, (req, res, ctx) =>
-        res(ctx.status(STATUS_CREATED), ctx.json(OK_LOGIN_API_RESPONSE))
-      )
-    );
     // eslint-disable-next-line no-proto
     jest.spyOn(window.localStorage.__proto__, 'setItem');
     userEvent.type(screen.getByLabelText('Login:email'), 'test123@test.com');
