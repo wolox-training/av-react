@@ -15,6 +15,7 @@ export interface UserRequestSuccess {
   lastName: string;
   email: string;
   locale: string;
+  accessToken: string;
 }
 
 export interface UserSignupRequestFail {
