@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 
 import { PATHS } from '~constants/paths';
 import LocalStorageService from '~services/LocalStorageService';
-import { TOKEN_KEY } from '~utils/constants';
+import { TOKEN_KEY } from '~config/api/constants';
 import WoloxImg from '~app/assets/wolox-logo.png';
 
 import styles from './styles.module.scss';
