@@ -4,15 +4,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { OK_BOOKS_API_RESPONSE } from '../../mocks';
 
-import Book from './';
+import BookItem from './';
 
-const MAX_BOOKS_LENGTH = 2;
+const MAX_BOOKS_LENGTH = 1;
 
 describe('Book test', () => {
   test('Should match snapshot', () => {
     const { container } = render(
       <Router>
-        <Book books={OK_BOOKS_API_RESPONSE.page} />
+        <BookItem book={OK_BOOKS_API_RESPONSE.page[0]} />
       </Router>
     );
     expect(container).toMatchSnapshot();
@@ -21,7 +21,7 @@ describe('Book test', () => {
   test('Should render books data', async () => {
     render(
       <Router>
-        <Book books={OK_BOOKS_API_RESPONSE.page} />
+        <BookItem book={OK_BOOKS_API_RESPONSE.page[0]} />
       </Router>
     );
     await waitFor(() => {

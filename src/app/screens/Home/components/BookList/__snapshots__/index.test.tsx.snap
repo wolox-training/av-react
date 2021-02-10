@@ -3,7 +3,7 @@
 exports[`BooksList test Should match snapshot 1`] = `
 <div>
   <div
-    class="bookList"
+    class="booksList"
   >
     <div
       class="sk-fade-in-half-second sk-spinner sk-three-bounce"

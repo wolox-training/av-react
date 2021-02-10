@@ -31,7 +31,7 @@ export interface UserLoginRequestFail {
   errors: string[];
 }
 
-export interface Books {
+export interface Book {
   id: number;
   author: string;
   title: string;
@@ -54,7 +54,7 @@ export interface BooksRequestSucess {
   count: number;
   currentPage: number;
   nextPage: number;
-  page: Books[];
+  page: Book[];
   totalCount: number;
   totalPages: number;
 }

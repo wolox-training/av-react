@@ -20,7 +20,7 @@ exports[`Home test Should match snapshot 1`] = `
       </h2>
     </header>
     <div
-      class="bookList"
+      class="booksList"
     >
       <div
         class="sk-fade-in-half-second sk-spinner sk-three-bounce"

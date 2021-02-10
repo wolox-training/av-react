@@ -6,7 +6,7 @@ import { getBooks } from '~services/BooksService';
 import Loading from '~components/Spinner/components/loading';
 
 import styles from './styles.module.scss';
-import Book from './components/Book';
+import BookItem from './components/BookItem';
 
 export default function BookList() {
   const [state, loading] = useRequest(
@@ -18,6 +18,8 @@ export default function BookList() {
   );
 
   return (
-    <div className={styles.bookList}>{loading ? <Loading /> : state && <Book books={state.page} />}</div>
+    <div className={styles.booksList}>
+      {loading ? <Loading /> : state?.page.map(book => <BookItem key={book.id} book={book} />)}
+    </div>
   );
 }
