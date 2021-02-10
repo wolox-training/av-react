@@ -13,7 +13,13 @@ interface Props {
 function PrivateRoute({ route, children }: Props) {
   const token = LocalStorageService.getValue(TOKEN_KEY);
 
-  return token ? <Route path={route}>{children}</Route> : <Redirect to={PATHS.login} />;
+  return token ? (
+    <Route exact path={route}>
+      {children}
+    </Route>
+  ) : (
+    <Redirect exact to={PATHS.login} />
+  );
 }
 
 export default PrivateRoute;
