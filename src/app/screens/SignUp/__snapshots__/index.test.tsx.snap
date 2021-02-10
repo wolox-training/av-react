@@ -105,7 +105,7 @@ exports[`Signup test Should match snapshot 1`] = `
       </div>
       <a
         class="row"
-        href="/"
+        href="/login"
       >
         <button
           class="customButton loginButton  full-width"
