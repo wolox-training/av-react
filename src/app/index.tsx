@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import '../scss/application.scss';
-import LocalStorageService from '~services/LocalStorageService';
-import { TOKEN_KEY } from '~utils/constants';
+import PrivateRoute from '~components/PrivateRoute';
+import AuthRoute from '~components/AuthRoute';
 
 import { PATHS } from '../constants/paths';
 
@@ -15,13 +15,19 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route
-          path={PATHS.home}
-          render={() => (LocalStorageService.getValue(TOKEN_KEY) ? <Home /> : <Login />)}
-        />
-        <Route path={PATHS.signup}>
-          <SignUp />
+        <Route path={PATHS.login}>
+          <AuthRoute route={PATHS.login}>
+            <Login />
+          </AuthRoute>
         </Route>
+        <Route path={PATHS.signup}>
+          <AuthRoute route={PATHS.signup}>
+            <SignUp />
+          </AuthRoute>
+        </Route>
+        <PrivateRoute route={PATHS.home}>
+          <Home />
+        </PrivateRoute>
       </Switch>
     </Router>
   );
