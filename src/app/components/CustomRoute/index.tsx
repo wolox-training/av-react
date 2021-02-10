@@ -9,7 +9,7 @@ interface Props extends RouteProps {
   protect?: boolean;
 }
 
-function AuthRoute({ authenticated, component: Component, protect, ...rest }: Props) {
+function CustomRoute({ authenticated, component: Component, protect, ...rest }: Props) {
   return (
     <Route
       {...rest}
@@ -28,4 +28,4 @@ function AuthRoute({ authenticated, component: Component, protect, ...rest }: Pr
   );
 }
 
-export default AuthRoute;
+export default CustomRoute;

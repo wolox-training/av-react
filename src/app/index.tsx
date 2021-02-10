@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import '../scss/application.scss';
-import AuthRoute from '~components/AuthRoute';
+import CustomRoute from '~components/CustomRoute';
 import LocalStorageService from '~services/LocalStorageService';
 import { TOKEN_KEY } from '~config/api/constants';
 import { PATHS } from '~constants/paths';
@@ -17,9 +17,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <AuthRoute component={Login} authenticated={logged} path={PATHS.login} exact />
-        <AuthRoute component={SignUp} authenticated={logged} path={PATHS.signup} exact />
-        <AuthRoute component={Home} authenticated={logged} path={PATHS.home} protect exact />
+        <CustomRoute component={Login} authenticated={logged} path={PATHS.login} exact />
+        <CustomRoute component={SignUp} authenticated={logged} path={PATHS.signup} exact />
+        <CustomRoute component={Home} authenticated={logged} path={PATHS.home} protect exact />
       </Switch>
     </Router>
   );
