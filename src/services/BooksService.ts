@@ -1,5 +1,5 @@
 import api from '~config/api';
-import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~utils/constants';
+import { TOKEN_KEY, CLIENT_KEY, UID_KEY } from '~config/api/constants';
 import { BooksRequestSucess, BooksRequestFail } from '~utils/types';
 
 import LocalStorageService from './LocalStorageService';

@@ -8,7 +8,7 @@ import BookItem from './';
 
 const MAX_BOOKS_LENGTH = 1;
 
-describe('Book test', () => {
+describe('BookItem test', () => {
   test('Should match snapshot', () => {
     const { container } = render(
       <Router>

@@ -1,27 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import '../scss/application.scss';
+import CustomRoute from '~components/CustomRoute';
 import LocalStorageService from '~services/LocalStorageService';
-import { TOKEN_KEY } from '~utils/constants';
-
-import { PATHS } from '../constants/paths';
+import { TOKEN_KEY } from '~config/api/constants';
+import { PATHS } from '~constants/paths';
 
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Home from './screens/Home';
 
 function App() {
+  const logged = LocalStorageService.getValue(TOKEN_KEY);
+  console.log(logged);
+
   return (
     <Router>
       <Switch>
-        <Route
-          path={PATHS.home}
-          render={() => (LocalStorageService.getValue(TOKEN_KEY) ? <Home /> : <Login />)}
-        />
-        <Route path={PATHS.signup}>
-          <SignUp />
-        </Route>
+        <CustomRoute component={Login} authenticated={logged} path={PATHS.login} exact />
+        <CustomRoute component={SignUp} authenticated={logged} path={PATHS.signup} exact />
+        <CustomRoute component={Home} authenticated={logged} path={PATHS.home} protect exact />
       </Switch>
     </Router>
   );
