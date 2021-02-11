@@ -9,21 +9,22 @@ import BookItem from './';
 const MAX_BOOKS_LENGTH = 1;
 
 describe('BookItem test', () => {
-  test('Should match snapshot', () => {
-    const { container } = render(
+  let container: Element | null = null;
+
+  beforeEach(() => {
+    const { container: renderContainer } = render(
       <Router>
         <BookItem book={OK_BOOKS_API_RESPONSE.page[0]} />
       </Router>
     );
+    container = renderContainer;
+  });
+
+  test('Should match snapshot', () => {
     expect(container).toMatchSnapshot();
   });
 
   test('Should render books data', async () => {
-    render(
-      <Router>
-        <BookItem book={OK_BOOKS_API_RESPONSE.page[0]} />
-      </Router>
-    );
     await waitFor(() => {
       expect(screen.getAllByAltText('BooksList:bookAlt').length).toBe(MAX_BOOKS_LENGTH);
       expect(screen.getByText(OK_BOOKS_API_RESPONSE.page[0].title)).toBeInTheDocument();
