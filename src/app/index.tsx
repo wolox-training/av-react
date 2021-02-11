@@ -13,7 +13,6 @@ import Home from './screens/Home';
 
 function App() {
   const logged = LocalStorageService.getValue(TOKEN_KEY);
-  console.log(logged);
 
   return (
     <Router>

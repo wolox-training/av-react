@@ -20,7 +20,7 @@ export interface UserRequestSuccess {
   uid: string;
 }
 
-export interface UserSignupRequestFail {
+export interface RequestFail {
   status: string;
   errors: {
     fullMessages: string[];
@@ -41,13 +41,6 @@ export interface Book {
   genre: string;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface BooksRequestFail {
-  status: string;
-  errors: {
-    fullMessages: string[];
-  };
 }
 
 export interface BooksRequestSucess {
