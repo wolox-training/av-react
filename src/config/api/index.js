@@ -1,8 +1,6 @@
 import { create } from 'apisauce';
 import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
 
-import LocalStorageService from '~services/LocalStorageService';
-
 import { EDNPOINTS, TOKEN_KEY, CLIENT_KEY, UID_KEY } from './constants';
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
@@ -42,6 +40,12 @@ export const apiSetup = dispatch => {
   });
 };
 
+export const headersSetup = (token, client, uid) => {
+  if (token) {
+    api.setHeaders({ [TOKEN_KEY]: token, client, uid });
+  }
+};
+
 api.addMonitor(response => {
   if (response.config.url === EDNPOINTS.signUp || response.config.url === EDNPOINTS.login) {
     response.data = {
@@ -64,18 +68,6 @@ api.addRequestTransform(request => {
   if (request.data) {
     const snakeCaseSerialize = new SnakecaseSerializer();
     request.data = snakeCaseSerialize.serialize(request.data);
-  }
-
-  const token = LocalStorageService.getValue(TOKEN_KEY);
-  const client = LocalStorageService.getValue(CLIENT_KEY);
-  const uid = LocalStorageService.getValue(UID_KEY);
-
-  if (token) {
-    request.headers = {
-      [TOKEN_KEY]: token,
-      client,
-      uid
-    };
   }
 });
 

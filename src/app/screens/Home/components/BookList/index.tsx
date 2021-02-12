@@ -1,6 +1,5 @@
 import React from 'react';
 
-// eslint-disable-next-line import/namespace
 import { useRequest } from '~app/hooks/useRequest';
 import { getBooks } from '~services/BooksService';
 import Loading from '~components/Spinner/components/loading';
