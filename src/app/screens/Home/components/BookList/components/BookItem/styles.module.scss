@@ -1,0 +1,36 @@
+@import 'variables/colors';
+
+.book {
+  box-shadow: 0 0 10px 6px $silver;
+  height: 300px;
+  width: 198px;
+
+  .book-image {
+    height: 200px;
+    width: 142px;
+    margin: 28px 28px 0;
+  }
+
+  .book-title {
+    color: $black;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    margin: 12px 0 0 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 109px;
+  }
+
+  .book-author {
+    color: $gray;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 12px 0 0 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 109px;
+  }
+}
