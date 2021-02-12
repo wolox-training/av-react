@@ -3,7 +3,6 @@ import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 
-import { TOKEN_KEY } from '~utils/constants';
 import { PATHS } from '~constants/paths';
 import { User, UserRequestSuccess } from '~utils/types';
 import { signUp } from '~services/UserService';

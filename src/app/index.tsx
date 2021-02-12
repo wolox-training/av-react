@@ -8,13 +8,15 @@ import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~config/api/constants';
 import { PATHS } from '~constants/paths';
 import { headersSetup } from '~config/api';
 import Loading from '~components/Spinner/components/loading';
+import withProvider from '~components/ProviderWrapper';
 
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import { INITIAL_STATE, useSelector, Context, reducer } from './contexts/User/reducer';
 
 function App() {
-  const logged = LocalStorageService.getValue(TOKEN_KEY);
+  const logged = useSelector(state => state.accessToken) || LocalStorageService.getValue(TOKEN_KEY);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -41,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default withProvider({ Context, reducer, initialState: INITIAL_STATE })(App);
