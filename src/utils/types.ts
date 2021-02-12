@@ -51,3 +51,21 @@ export interface BooksRequestSucess {
   totalCount: number;
   totalPages: number;
 }
+
+export interface BooksRequestFail {
+  status: string;
+  errors: {
+    fullMessages: string[];
+  };
+}
+
+export interface BookSuccess {
+  id: number;
+  author: string;
+  title: string;
+  imageUrl: string;
+  editor: string;
+  year: string;
+  genre: string;
+  currentRent: boolean;
+}

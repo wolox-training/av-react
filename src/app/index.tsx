@@ -9,6 +9,7 @@ import { PATHS } from '~constants/paths';
 import { headersSetup } from '~config/api';
 import Loading from '~components/Spinner/components/loading';
 import withProvider from '~components/ProviderWrapper';
+import BookDetail from '~screens/BookDetail';
 
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
@@ -36,6 +37,7 @@ function App() {
         <CustomRoute component={Login} authenticated={logged} path={PATHS.login} exact />
         <CustomRoute component={SignUp} authenticated={logged} path={PATHS.signup} exact />
         <CustomRoute component={Home} authenticated={logged} path={PATHS.home} protect exact />
+        <CustomRoute component={BookDetail} authenticated={logged} path={PATHS.bookDetail} protect exact />
       </Switch>
     </Router>
   ) : (
