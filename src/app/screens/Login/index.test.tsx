@@ -37,4 +37,16 @@ describe('Login test', () => {
     userEvent.click(screen.getByText('Login:login'));
     await waitFor(() => expect(screen.getAllByRole('alert').length).toBe(MAX_ALERTS_LENGTH));
   });
+<<<<<<< HEAD
+=======
+
+  test('Local storage should be called after sucess login request.', async () => {
+    // eslint-disable-next-line no-proto
+    jest.spyOn(window.localStorage.__proto__, 'setItem');
+    userEvent.type(screen.getByLabelText('Login:email'), 'test123@test.com');
+    userEvent.type(screen.getByLabelText('Login:password'), '123456');
+    userEvent.click(screen.getByText('Login:login'));
+    await waitFor(() => expect(localStorage.setItem).toHaveBeenCalled());
+  });
+>>>>>>> origin/testing-all-components
 });

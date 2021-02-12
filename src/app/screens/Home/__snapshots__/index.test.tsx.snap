@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home test Should match snapshot 1`] = `
+<div>
+  <div
+    class="home column"
+  >
+    <nav
+      class="appbar row space-around middle"
+    >
+      <img
+        alt="Home:logoAlt"
+        class="logo"
+        src="wolox-logo.png"
+      />
+      <h2
+        class="logout"
+      >
+        Home:logout
+      </h2>
+    </nav>
+  </div>
+</div>
+`;
