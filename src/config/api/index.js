@@ -1,8 +1,9 @@
 import { create } from 'apisauce';
-import {CamelcaseSerializer, SnakecaseSerializer} from 'cerealizr';
-import { SING_UP_URL, LOGIN_URL, TOKEN_KEY } from '../utils/constants';
+import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
 
-const baseURL =  process.env.REACT_APP_API_BASE_URL;
+import { EDNPOINTS, TOKEN_KEY, CLIENT_KEY, UID_KEY } from './constants';
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 if (baseURL === 'http://wolox.com') {
   console.warn('API baseURL has not been properly initialized'); // eslint-disable-line no-console
@@ -18,7 +19,7 @@ const api = create({
    * baseURL: process.env.API_BASE_URL,
    */
   baseURL,
-  timeout: 15000,
+  timeout: 15000
 });
 
 // eslint-disable-next-line no-unused-vars, prettier/prettier, @typescript-eslint/no-unused-vars
@@ -39,24 +40,32 @@ export const apiSetup = dispatch => {
   });
 };
 
+export const headersSetup = (token, client, uid) => {
+  if (token) {
+    api.setHeaders({ [TOKEN_KEY]: token, client, uid });
+  }
+};
+
 api.addMonitor(response => {
-  if(response.config.url === SING_UP_URL || response.config.url === LOGIN_URL){
+  if (response.config.url === EDNPOINTS.signUp || response.config.url === EDNPOINTS.login) {
     response.data = {
       ...response.data,
-      accessToken: response.headers[TOKEN_KEY]
-    }
+      accessToken: response.headers[TOKEN_KEY],
+      client: response.headers[CLIENT_KEY],
+      uid: response.headers[UID_KEY]
+    };
   }
 });
 
 api.addMonitor(response => {
-  if(response.data) {
+  if (response.data) {
     const camelCaseSerializer = new CamelcaseSerializer();
     response.data = camelCaseSerializer.serialize(response.data);
   }
 });
 
 api.addRequestTransform(request => {
-  if(request.data) {
+  if (request.data) {
     const snakeCaseSerialize = new SnakecaseSerializer();
     request.data = snakeCaseSerialize.serialize(request.data);
   }

@@ -1,9 +1,9 @@
-import { UserRequestSuccess, UserLoginRequestFail, UserSignupRequestFail, User } from '../utils/types';
-import api from '../config/api';
-import { SING_UP_URL, LOGIN_URL } from '../utils/constants';
+import api from '~config/api';
+import { EDNPOINTS } from '~config/api/constants';
 
-export const signUp = (payload: User) =>
-  api.post<UserRequestSuccess, UserSignupRequestFail>(SING_UP_URL, payload);
+import { UserRequestSuccess, UserLoginRequestFail, RequestFail, User } from '../utils/types';
+
+export const signUp = (payload: User) => api.post<UserRequestSuccess, RequestFail>(EDNPOINTS.signUp, payload);
 
 export const login = (payload: User) =>
-  api.post<UserRequestSuccess, UserLoginRequestFail>(LOGIN_URL, payload);
+  api.post<UserRequestSuccess, UserLoginRequestFail>(EDNPOINTS.login, payload);

@@ -10,11 +10,8 @@ import { signUp } from '~services/UserService';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import Loading from '~components/Spinner/components/loading';
 import CustomInput from '~components/CustomInput';
-// eslint-disable-next-line import/namespace
 import { useLazyRequest } from '~hooks/useRequest';
-import LocalStorageService from '~services/LocalStorageService';
-
-import WoloxImg from '../Assets/wolox-logo.png';
+import WoloxImg from '~app/assets/wolox-logo.png';
 
 import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';
@@ -23,12 +20,11 @@ interface FormData extends User {
   passwordConfirmation?: string;
 }
 
-export default function SignUp() {
+function SignUp() {
   const history = useHistory();
 
   const signupSuccess = (data?: UserRequestSuccess) => {
     if (data) {
-      LocalStorageService.setValue(TOKEN_KEY, data.accessToken);
       history.push(PATHS.login);
     }
   };
@@ -126,3 +122,5 @@ export default function SignUp() {
     </div>
   );
 }
+
+export default SignUp;

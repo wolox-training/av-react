@@ -1,28 +1,41 @@
 import React from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { User } from '~utils/types';
+import { User, UserRequestSuccess } from '~utils/types';
 import { login } from '~services/UserService';
-import { useLazyRequest } from '~app/hooks/useRequest';
+import { useLazyRequest } from '~hooks/useRequest';
 import Loading from '~components/Spinner/components/loading';
 import CustomErrorDisplayer from '~components/CustomErrorDisplayer';
 import { PATHS } from '~constants/paths';
+import { TOKEN_KEY, UID_KEY, CLIENT_KEY } from '~config/api/constants';
+import LocalStorageService from '~services/LocalStorageService';
+import WoloxImg from '~app/assets/wolox-logo.png';
 
 import CustomInput from '../../components/CustomInput';
-import WoloxImg from '../Assets/wolox-logo.png';
 
 import { LOGIN_FIELDS } from './constants';
 import styles from './styles.module.scss';
 
-export default function Login() {
+function Login() {
+  const history = useHistory();
+
+  const loginSuccess = (data?: UserRequestSuccess) => {
+    if (data) {
+      LocalStorageService.setValue(TOKEN_KEY, data.accessToken);
+      LocalStorageService.setValue(UID_KEY, data.uid);
+      LocalStorageService.setValue(CLIENT_KEY, data.client);
+      history.push(PATHS.home);
+    }
+  };
+
   const { register, handleSubmit, errors } = useForm<User>({ mode: 'all' });
   const [, loading, error, sendRequest] = useLazyRequest({
-    request: login
+    request: login,
+    withPostSuccess: loginSuccess
   });
   const onSubmit = handleSubmit(data => sendRequest(data));
-
   return (
     <div className="column center">
       <form className={`column ${styles.loginForm}`} onSubmit={onSubmit}>
@@ -71,3 +84,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
