@@ -11,18 +11,6 @@ const MINIMUM_ALERT_LENGTH = 1;
 const FORM_BUTTONS_AMOUNT = 2;
 const PASSWORD = 'test';
 const WRONG_CONFIRM_PASSWORD = 'wrongPassword';
-const API_URL = `${process.env.REACT_APP_API_BASE_URL}/users`;
-const STATUS_CREATED = 201;
-
-const server = setupServer(
-  rest.post(`${API_URL}`, (req, res, ctx) =>
-    res(ctx.status(STATUS_CREATED), ctx.json(OK_SIGNUP_API_RESPONSE))
-  )
-);
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
 
 describe('Signup test', () => {
   let container: Element | null = null;
