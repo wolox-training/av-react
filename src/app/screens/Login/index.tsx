@@ -12,6 +12,7 @@ import { PATHS } from '~constants/paths';
 import { TOKEN_KEY, UID_KEY, CLIENT_KEY } from '~config/api/constants';
 import LocalStorageService from '~services/LocalStorageService';
 import WoloxImg from '~app/assets/wolox-logo.png';
+import { actionCreators, useDispatch } from '~app/contexts/User/reducer';
 
 import CustomInput from '../../components/CustomInput';
 
@@ -20,12 +21,14 @@ import styles from './styles.module.scss';
 
 function Login() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const loginSuccess = (data?: UserRequestSuccess) => {
     if (data) {
       LocalStorageService.setValue(TOKEN_KEY, data.accessToken);
       LocalStorageService.setValue(UID_KEY, data.uid);
       LocalStorageService.setValue(CLIENT_KEY, data.client);
+      dispatch(actionCreators.setSession(data.accessToken, data.uid, data.client));
       history.push(PATHS.home);
     }
   };

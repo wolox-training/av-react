@@ -6,15 +6,19 @@ import { PATHS } from '~constants/paths';
 import LocalStorageService from '~services/LocalStorageService';
 import { CLIENT_KEY, TOKEN_KEY, UID_KEY } from '~config/api/constants';
 import WoloxImg from '~app/assets/wolox-logo.png';
+import { actionCreators, useDispatch } from '~app/contexts/User/reducer';
 
 import styles from './styles.module.scss';
 
 function Appbar() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const logout = () => {
     LocalStorageService.removeValue(TOKEN_KEY);
     LocalStorageService.removeValue(CLIENT_KEY);
     LocalStorageService.removeValue(UID_KEY);
+    dispatch(actionCreators.closeSession());
     history.push(PATHS.login);
   };
 
