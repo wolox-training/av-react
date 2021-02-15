@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookDetail test Should match snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="backWrapper row middle"
+    >
+      <img
+        alt="BookCard:backArrowAlt"
+        class="backArrow"
+        src="back-arrow.png"
+      />
+      <span
+        class="backText"
+      >
+        BookCard:back
+      </span>
+    </div>
+    <div
+      class="bookCard row"
+    >
+      <img
+        alt="BookCard:bookAlt"
+        class="bookImg"
+        src="imageurl"
+      />
+      <img
+        alt="BookCard:badgeAlt"
+        class="badge"
+        src="badge.png"
+      />
+      <div
+        class="bookInfo column"
+      >
+        <div
+          class="titleWrapper"
+        >
+          <span
+            class="bookTitle"
+          >
+            title
+          </span>
+          <span
+            class="bookGenre"
+          >
+            genre
+          </span>
+        </div>
+        <div
+          class="bookDetails"
+        >
+          <span
+            class="bookDetailsIndex"
+          >
+            BookCard:author
+          </span>
+          <span
+            class="bookDetailsItem"
+          >
+            author
+          </span>
+        </div>
+        <div
+          class="bookDetails"
+        >
+          <span
+            class="bookDetailsIndex"
+          >
+            BookCard:editor
+          </span>
+          <span
+            class="bookDetailsItem"
+          >
+            editor
+          </span>
+        </div>
+        <div
+          class="bookDetails"
+        >
+          <span
+            class="bookDetailsIndex"
+          >
+            BookCard:publishYearh
+          </span>
+          <span
+            class="bookDetailsItem"
+          >
+            1900
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
