@@ -59,7 +59,7 @@ export interface BooksRequestFail {
   };
 }
 
-export interface BookSuccess {
+export interface BookRequestSuccess {
   id: number;
   author: string;
   title: string;

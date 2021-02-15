@@ -36,8 +36,8 @@ function App() {
       <Switch>
         <CustomRoute component={Login} authenticated={logged} path={PATHS.login} exact />
         <CustomRoute component={SignUp} authenticated={logged} path={PATHS.signup} exact />
+        <CustomRoute component={BookDetail} authenticated={logged} path={PATHS.bookDetail} protect />
         <CustomRoute component={Home} authenticated={logged} path={PATHS.home} protect exact />
-        <CustomRoute component={BookDetail} authenticated={logged} path={PATHS.bookDetail} protect exact />
       </Switch>
     </Router>
   ) : (

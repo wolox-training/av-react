@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookNotFound test Should match snapshot 1`] = `
+<div>
+  <div
+    class="wrapper row center"
+  >
+    <span
+      class="notFound"
+    >
+      BookNotFound:notFound
+    </span>
+  </div>
+</div>
+`;

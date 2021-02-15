@@ -5,12 +5,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import BookDetail from './';
 
 describe('BookDetail test', () => {
-  test('Should match snapshot', () => {
-    const { container } = render(
+  let container: Element | null = null;
+
+  beforeEach(() => {
+    const { container: renderContainer } = render(
       <Router>
         <BookDetail />
       </Router>
     );
+    container = renderContainer;
+  });
+
+  test('Should match snapshot', () => {
     expect(container).toMatchSnapshot();
   });
 });
